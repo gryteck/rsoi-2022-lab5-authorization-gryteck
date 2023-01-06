@@ -9,7 +9,7 @@
 		},
 		{
 			"key": "identityProviderUrl",
-			"value": "http://gryteck.cloud.okteto.net",
+			"value": "http://gryteck.cloud.okteto.net/realms/rsoi-lab5/protocol/openid-connect/token",
 			"enabled": true
 		},
 		{
@@ -29,7 +29,7 @@
 		},
 		{
 			"key": "clientSecret",
-			"value": "pg2KLPQBBhp69DSJ9j2cqdlcIvRofyTp",
+			"value": "jB9BG6skCj7Ow6dfin5Uw0ndFbnwrrf6",
 			"enabled": true
 		}
 	],

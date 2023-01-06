@@ -71,12 +71,15 @@
 							]
 						},
 						"url": {
-							"raw": "{{identityProviderUrl}}/oauth/token",
+							"raw": "{{identityProviderUrl}}",
 							"host": [
 								"{{identityProviderUrl}}"
 							],
 							"path": [
-								"oauth",
+								"realms",
+								"rsoi-lab5",
+								"protocol",
+								"openid-connect",
 								"token"
 							]
 						}
