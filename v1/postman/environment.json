@@ -4,12 +4,12 @@
 	"values": [
 		{
 			"key": "serviceUrl",
-			"value": "",
+			"value": "http://gryteck.cloud.okteto.net",
 			"enabled": true
 		},
 		{
 			"key": "identityProviderUrl",
-			"value": "",
+			"value": "http://gryteck.cloud.okteto.net",
 			"enabled": true
 		},
 		{
