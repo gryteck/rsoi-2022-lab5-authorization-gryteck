@@ -90,6 +90,13 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
+      - name: Deploy keycloak
+        uses: actions-hub/kubectl@master
+        with:
+          args: apply -f k8s/secrets/keycloak-secret.yml -f k8s/keycloak-configmap.yml -f k8s/keycloak.yml
+        env:
+          KUBE_CONFIG: '${{ secrets.KUBE_CONFIG_ENC }}'
+
       - name: Deploy ingress and postgres
         uses: actions-hub/kubectl@master
         with:
