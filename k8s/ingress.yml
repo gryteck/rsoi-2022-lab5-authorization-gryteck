@@ -15,6 +15,27 @@ spec:
                 name: gateway-service
                 port:
                   number: 80
+          - path: /me
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-service
+                port:
+                  number: 80
+          - path: /token
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-service
+                port:
+                  number: 80
+          - path: /session
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-service
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:

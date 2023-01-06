@@ -14,22 +14,22 @@
 		},
 		{
 			"key": "username",
-			"value": "",
+			"value": "test max",
 			"enabled": true
 		},
 		{
 			"key": "password",
-			"value": "",
+			"value": "test max",
 			"enabled": true
 		},
 		{
 			"key": "clientId",
-			"value": "",
+			"value": "rsoi-lab5-client",
 			"enabled": true
 		},
 		{
 			"key": "clientSecret",
-			"value": "",
+			"value": "pg2KLPQBBhp69DSJ9j2cqdlcIvRofyTp",
 			"enabled": true
 		}
 	],
