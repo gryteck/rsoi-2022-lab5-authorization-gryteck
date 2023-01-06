@@ -1,0 +1,125 @@
+version: '3.8'
+services:
+  config-server:
+    image: config-server
+    container_name: config-server
+    build:
+      context: config-server
+    expose:
+      - 8888
+    ports:
+      - "8888:8888"
+    networks:
+      - services-network
+    restart: on-failure
+  gateway:
+    image: gateway
+    container_name: gateway
+    build:
+      context: gateway
+    depends_on:
+      - config-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=github
+      - CONFIG_SERVER_URL=http://config-server:8888
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - services-network
+    restart: on-failure
+  bonus-service:
+    image: bonus-service
+    container_name: bonus-service
+    build:
+      context: bonus-service
+    depends_on:
+      - config-server
+      - postgres
+    expose:
+      - 8070
+    ports:
+      - "8070:8070"
+    environment:
+      - SPRING_PROFILES_ACTIVE=github
+      - CONFIG_SERVER_URL=http://config-server:8888
+    networks:
+      - services-network
+    restart: on-failure
+  flight-service:
+    image: flight-service
+    container_name: flight-service
+    build:
+      context: flight-service
+    expose:
+      - 8050
+    ports:
+      - "8050:8050"
+    depends_on:
+      - config-server
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=github
+      - CONFIG_SERVER_URL=http://config-server:8888
+    networks:
+      - services-network
+    restart: on-failure
+  ticket-service:
+    image: ticket-service
+    container_name: ticket-service
+    build:
+      context: ticket-service
+    depends_on:
+      - config-server
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=github
+      - CONFIG_SERVER_URL=http://config-server:8888
+    expose:
+      - 8060
+    ports:
+      - "8060:8060"
+    networks:
+      - services-network
+    restart: on-failure
+  user-service:
+    image: user-service
+    container_name: user-service
+    build:
+      context: user-service
+    depends_on:
+      - config-server
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=github
+      - CONFIG_SERVER_URL=http://config-server:8888
+    expose:
+      - 8040
+    ports:
+      - "8040:8040"
+    networks:
+      - services-network
+    restart: on-failure
+  postgres:
+    image: library/postgres:13
+    container_name: postgres
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: postgres
+    networks:
+      - services-network
+#    volumes:
+#      - db-data:/var/lib/postgresql/data
+#      - ./postgres/:/docker-entrypoint-initdb.d/
+    ports:
+      - "5432:5432"
+
+networks:
+  services-network:
+    driver: bridge
+
+#volumes:
+#  db-data:

@@ -1,0 +1,21 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    password: ${DATABASE_PASSWORD}
+    username: ${DATABASE_USER}
+
+app.service:
+  gateway:
+    baseUrl: http://gateway-service
+  userService:
+    baseUrl: http://user-service
+    url: http://user-service/api/v1
+  flightService:
+    baseUrl: http://flight-service
+    url: http://flight-service/api/v1
+  ticketService:
+    baseUrl: http://ticket-service
+    uri: http://ticket-service/api/v1
+  bonusService:
+    baseUrl: http://bonus-service
+    uri: http://bonus-service/api/v1

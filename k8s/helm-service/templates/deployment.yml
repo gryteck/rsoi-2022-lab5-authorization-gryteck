@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-deployment
+  labels:
+    app: {{ .Values.name }}-deployment
+  annotations:
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}-deployment
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}-deployment
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: {{ .Values.container.name }}
+          image: {{ .Values.container.image }}
+          ports:
+            - containerPort: {{ .Values.targetPort }}
+          env:
+            {{- range $index, $current := $.Values.env }}
+            - name: {{ $current.name }}
+              value: {{ $current.value | quote }}
+            {{- end }}
+
+            {{- range $index, $current := $.Values.configMap }}
+            - name: {{ $current.envName }}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ $current.configMapName }}
+                  key: {{ $current.configMapKey }}
+            {{- end }}
+
+            {{- range $index, $current := $.Values.secret }}
+            - name: {{ $current.envName }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $current.secretName }}
+                  key: {{ $current.secretKey }}
+            {{- end }}
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "800Mi"
+              cpu: "500m"

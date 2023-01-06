@@ -1,0 +1,45 @@
+spring:
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm
+
+logging:
+  level:
+    io.r2dbc.postgresql.QUERY: DEBUG # for queries
+    io.r2dbc.postgresql.PARAM: DEBUG # for parameters
+    io.gryteck: DEBUG
+
+    org:
+      springframework:
+        web: DEBUG
+        r2dbc: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+app.service:
+  gateway:
+    name: gateway
+    baseUrl: http://localhost:8080
+  userService:
+    name: user-service
+    baseUrl: http://localhost:8040
+    url: http://localhost:8040/api/v1
+  flightService:
+    name: flight-service
+    baseUrl: http://localhost:8050
+    url: http://localhost:8050/api/v1
+  ticketService:
+    name: ticket-service
+    baseUrl: http://localhost:8060
+    uri: http://localhost:8060/api/v1
+  bonusService:
+    name: bonus-service
+    baseUrl: http://localhost:8070
+    uri: http://localhost:8070/api/v1

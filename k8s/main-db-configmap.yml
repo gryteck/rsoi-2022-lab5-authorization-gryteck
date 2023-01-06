@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: main-db-configmap
+data:
+  host: "postgres"
+  name: "postgresdb"
+  port: "5432"

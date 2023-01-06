@@ -1,0 +1,28 @@
+name: gateway
+container:
+  name: gateway
+  image: gryteck/rsoi-gateway:1
+env:
+  - name: PORT
+    value: "9080"
+  - name: spring_profiles_active
+    value: "k8s"
+  - name: CONFIG_SERVER_URL
+    value: http://config-service
+configMap:
+  - envName: DATABASE_HOST
+    configMapName: main-db-configmap
+    configMapKey: host
+  - envName: DATABASE_NAME
+    configMapName: main-db-configmap
+    configMapKey: name
+  - envName: DATABASE_PORT
+    configMapName: main-db-configmap
+    configMapKey: port
+secret:
+  - envName: DATABASE_USER
+    secretName: postgresql-1-secret
+    secretKey: username
+  - envName: DATABASE_PASSWORD
+    secretName: postgresql-1-secret
+    secretKey: password

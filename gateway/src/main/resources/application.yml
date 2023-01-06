@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: users
+          predicates:
+            - Path=/api/v1/me
+          uri: ${app.service.userService.baseUrl:}
+        - id: tickets
+          predicates:
+            - Path=/api/v1/tickets/**
+          uri: ${app.service.ticketService.baseUrl:}
+        - id: privileges
+          predicates:
+            - Path=/api/v1/privilege/**
+          uri: ${app.service.bonusService.baseUrl:}
+        - id: fligths
+          predicates:
+            - Path=/api/v1/flights/**
+          uri: ${app.service.flightService.baseUrl:}

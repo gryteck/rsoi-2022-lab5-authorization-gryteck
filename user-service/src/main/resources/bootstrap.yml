@@ -1,0 +1,12 @@
+spring:
+  application.name:
+    user-service
+  webflux:
+    base-path: /api/v1
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+      enabled: true
+
+server:
+  port: ${PORT:8040}

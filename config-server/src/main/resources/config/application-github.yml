@@ -1,0 +1,25 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://postgres:5432/postgres
+    password: postgres
+    username: postgres
+app.service:
+  gateway:
+    name: gateway
+    baseUrl: http://gateway:8080
+  userService:
+    name: user-service
+    baseUrl: http://user-service:8040
+    url: http://user-service:8040/api/v1
+  flightService:
+    name: flight-service
+    baseUrl: http://flight-service:8050
+    url: http://flight-service:8050/api/v1
+  ticketService:
+    name: ticket-service
+    baseUrl: http://ticket-service:8060
+    uri: http://ticket-service:8060/api/v1
+  bonusService:
+    name: bonus-service
+    baseUrl: http://bonus-service:8070
+    uri: http://bonus-service:8070/api/v1
