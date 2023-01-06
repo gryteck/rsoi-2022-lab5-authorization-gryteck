@@ -23,16 +23,16 @@ jobs:
           delayRequest: 100
           reporters: '[ "cli" ]'
 
-      - uses: education/autograding@v1
-        id: autograder
-        continue-on-error: true
-
-      - name: Github auto grader mark
-        uses: Romanow/google-sheet-autograder-marker@v1.0
-        with:
-          google_token: ${{secrets.GOOGLE_API_KEY}}
-          sheet_id: "1xkgjUX6Qmk7rdJG-QPOToav-HWWtthJjnShIKnw3oIY"
-          homework_number: 5
-          user_column: 'D'
-          column_offset: 'F'
-          mark: "'+"
+#      - uses: education/autograding@v1
+#        id: autograder
+#        continue-on-error: true
+#
+#      - name: Github auto grader mark
+#        uses: Romanow/google-sheet-autograder-marker@v1.0
+#        with:
+#          google_token: ${{secrets.GOOGLE_API_KEY}}
+#          sheet_id: "1xkgjUX6Qmk7rdJG-QPOToav-HWWtthJjnShIKnw3oIY"
+#          homework_number: 5
+#          user_column: 'D'
+#          column_offset: 'F'
+#          mark: "'+"
