@@ -18,3 +18,22 @@ spring:
           predicates:
             - Path=/api/v1/flights/**
           uri: ${app.service.flightService.baseUrl:}
+      default-filters:
+        - TokenRelay
+
+  security:
+    oauth2:
+      client:
+        provider:
+          rsoi-keycloack-provider:
+            issuer-uri: ${OAUTH2_ISSUER_URI:}
+            token-uri: ${OAUTH2_TOKEN_URI:}
+            authorization-uri: ${OAUTH2_AUTHORIZATION_URI:}
+            user-name-attribute: preferred_username
+        registration:
+          keycloak-spring-gateway-client:
+            provider: rsoi-keycloack-provider
+            client-id: ${OAUTH2_CLIENT_ID:}
+            client-secret: ${OAUTH2_CLIENT_SECRET:}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/api/v1/callback"

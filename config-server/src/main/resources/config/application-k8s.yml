@@ -3,6 +3,12 @@ spring:
     url: r2dbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
     password: ${DATABASE_PASSWORD}
     username: ${DATABASE_USER}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${OAUTH2_ISSUER_URI:}
+          jwk-set-uri: ${OAUTH2_JWK_SET_URI:}
 
 app.service:
   gateway:
