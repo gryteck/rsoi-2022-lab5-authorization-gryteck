@@ -19,6 +19,12 @@ configMap:
   - envName: DATABASE_PORT
     configMapName: main-db-configmap
     configMapKey: port
+  - envName: OAUTH2_ISSUER_URI
+    configMapName: keycloak-configmap
+    configMapKey: issuer-uri
+  - envName: OAUTH2_JWK_SET_URI
+    configMapName: keycloak-configmap
+    configMapKey: jwk-set-uri
 secret:
   - envName: DATABASE_USER
     secretName: postgresql-1-secret

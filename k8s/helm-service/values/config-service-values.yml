@@ -8,9 +8,21 @@ env:
   - name: spring_profiles_active
     value: "k8s, native"
 configMap:
+  - envName: OAUTH2_ISSUER_URI
+    configMapName: keycloak-configmap
+    configMapKey: issuer-uri
+  - envName: OAUTH2_JWK_SET_URI
+    configMapName: keycloak-configmap
+    configMapKey: jwk-set-uri
   - envName: DATABASE_HOST
     configMapName: main-db-configmap
     configMapKey: host
+  - envName: DATABASE_NAME
+    configMapName: main-db-configmap
+    configMapKey: name
+  - envName: DATABASE_PORT
+    configMapName: main-db-configmap
+    configMapKey: port
 secret:
   - envName: DATABASE_USER
     secretName: postgresql-1-secret

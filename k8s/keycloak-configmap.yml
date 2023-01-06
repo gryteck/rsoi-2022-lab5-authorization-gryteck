@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-configmap
+data:
+  client-id: "rsoi-lab5-client"
+  authorization-uri: "http://gryteck.cloud.okteto.net/realms/rsoi-lab5/protocol/openid-connect/auth"
+  token-uri: "http://gryteck.cloud.okteto.net/realms/rsoi-lab5/protocol/openid-connect/token"
+  issuer-uri: "http://gryteck.cloud.okteto.net/realms/rsoi-lab5"
+  jwk-set-uri: "http://gryteck.cloud.okteto.net/realms/rsoi-lab5/protocol/openid-connect/certs"
