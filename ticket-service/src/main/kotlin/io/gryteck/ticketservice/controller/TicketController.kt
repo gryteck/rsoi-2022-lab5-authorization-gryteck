@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
+import org.springframework.security.core.Authentication
+import org.springframework.security.oauth2.jwt.Jwt
 
 @RestController
 @RequestMapping("/tickets")
@@ -16,34 +18,36 @@ class TicketController(private val ticketService: TicketService) {
 
     @GetMapping
     suspend fun getAllUserTickets(
-        @RequestHeader(name = "X-User-Name", required = true) username: String
+        authentication: Authentication
     ): ResponseEntity<Flow<TicketResponse>> {
-        return ResponseEntity.ok(ticketService.findTickets(username))
+        return ResponseEntity.ok(ticketService.findTickets(authentication.getPreferredUsername()))
     }
 
     @GetMapping("/{ticketUid}")
     suspend fun getUserTicket(
         @PathVariable ticketUid: UUID,
-        @RequestHeader(name = "X-User-Name", required = true) username: String
+        authentication: Authentication
     ): ResponseEntity<TicketResponse> {
-        return ResponseEntity.ok(ticketService.findTicket(username, ticketUid))
+        return ResponseEntity.ok(ticketService.findTicket(authentication.getPreferredUsername(), ticketUid))
     }
 
     @PostMapping
     suspend fun buyTicket(
-        @RequestHeader(name = "X-User-Name", required = true) username: String,
+        authentication: Authentication,
         @RequestBody ticketPurchaseRequest: TicketPurchaseRequest
     ): ResponseEntity<TicketPurchaseResponse> {
-        return ResponseEntity.ok(ticketService.buyTicket(username, ticketPurchaseRequest))
+        return ResponseEntity.ok(ticketService.buyTicket(authentication.getPreferredUsername(), ticketPurchaseRequest))
     }
 
     @DeleteMapping("/{ticketUid}")
     suspend fun cancelTicket(
-        @RequestHeader(name = "X-User-Name", required = true) username: String,
+        authentication: Authentication,
         @PathVariable ticketUid: UUID
     ): ResponseEntity<String> {
-        ticketService.cancelTicket(username, ticketUid)
+        ticketService.cancelTicket(authentication.getPreferredUsername(), ticketUid)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
-
 }
+
+private fun Authentication.getPreferredUsername(): String =
+    (this.credentials as Jwt).claims["preferred_username"] as String
