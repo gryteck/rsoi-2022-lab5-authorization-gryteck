@@ -1,7 +1,7 @@
 name: ticket
 container:
   name: ticket-service
-  image: gryteck/rsoi-ticket-service:1
+  image: gryteck/rsoi-ticket-service:2
 env:
   - name: PORT
     value: "9080"

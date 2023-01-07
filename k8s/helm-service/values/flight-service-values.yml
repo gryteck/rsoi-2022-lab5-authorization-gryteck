@@ -1,7 +1,7 @@
 name: flight
 container:
   name: flight-service
-  image: gryteck/rsoi-flight-service:1
+  image: gryteck/rsoi-flight-service:2
 env:
   - name: PORT
     value: "9080"

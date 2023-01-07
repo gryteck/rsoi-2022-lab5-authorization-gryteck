@@ -1,7 +1,7 @@
 name: user
 container:
   name: user-service
-  image: gryteck/rsoi-user-service:1
+  image: gryteck/rsoi-user-service:2
 env:
   - name: PORT
     value: "9080"

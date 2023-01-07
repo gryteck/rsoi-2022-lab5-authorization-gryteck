@@ -1,7 +1,7 @@
 name: config
 container:
   name: config-server
-  image: gryteck/rsoi-config-server:1
+  image: gryteck/rsoi-config-server:2
 env:
   - name: PORT
     value: "9080"

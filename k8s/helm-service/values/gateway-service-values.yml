@@ -1,7 +1,7 @@
 name: gateway
 container:
   name: gateway
-  image: gryteck/rsoi-gateway:1
+  image: gryteck/rsoi-gateway:2
 env:
   - name: PORT
     value: "9080"

@@ -21,4 +21,4 @@ CREATE TABLE IF NOT EXISTS privilege_history
         CHECK (operation_type IN ('FILL_IN_BALANCE', 'DEBIT_THE_ACCOUNT'))
 );
 
-INSERT INTO privilege VALUES(1, 'Test Max', 'BRONZE', 0) ON CONFLICT (id) do nothing;
+INSERT INTO privilege VALUES(1, 'test max', 'BRONZE', 0) ON CONFLICT (id) do nothing;
