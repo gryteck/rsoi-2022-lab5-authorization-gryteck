@@ -9,6 +9,11 @@ spring:
         jwt:
           issuer-uri: ${OAUTH2_ISSUER_URI:}
           jwk-set-uri: ${OAUTH2_JWK_SET_URI:}
+  logging:
+    level:
+      org:
+        springframework:
+          security: DEBUG
 
 app.service:
   gateway:

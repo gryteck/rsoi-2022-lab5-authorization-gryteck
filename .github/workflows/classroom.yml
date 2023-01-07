@@ -13,114 +13,114 @@ jobs:
 
       - uses: docker/setup-buildx-action@v2
 
-#      - name: Set up JDK 11
-#        uses: actions/setup-java@v2
-#        with:
-#          java-version: '11'
-#          distribution: 'adopt-hotspot'
-#          cache: gradle
-#      - name: Grant execute permission for gradlew
-#        run: chmod +x gradlew
-#      - name: Build and copy files for docker build
-#        run: ./gradlew copyJarToDocker
-#
-#      - name: docker build push bonus-service
-#        uses: mr-smithers-excellent/docker-build-push@v5
-#        with:
-#          image: gryteck/rsoi-bonus-service
-#          tags: 1.0
-#          registry: docker.io
-#          directory: docker-compose/bonus-service
-#          dockerfile: docker-compose/bonus-service/Dockerfile
-#          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-#          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-#
-#      - name: docker build push config-server
-#        uses: mr-smithers-excellent/docker-build-push@v5
-#        with:
-#          image: gryteck/rsoi-config-server
-#          tags: 1.0
-#          registry: docker.io
-#          directory: docker-compose/config-server
-#          dockerfile: docker-compose/config-server/Dockerfile
-#          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-#          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-#
-#      - name: docker build push flight-service
-#        uses: mr-smithers-excellent/docker-build-push@v5
-#        with:
-#          image: gryteck/rsoi-flight-service
-#          tags: 1.0
-#          registry: docker.io
-#          directory: docker-compose/flight-service
-#          dockerfile: docker-compose/flight-service/Dockerfile
-#          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-#          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-#
-#      - name: docker build push gateway
-#        uses: mr-smithers-excellent/docker-build-push@v5
-#        with:
-#          image: gryteck/rsoi-gateway
-#          tags: 1.0
-#          registry: docker.io
-#          directory: docker-compose/gateway
-#          dockerfile: docker-compose/gateway/Dockerfile
-#          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-#          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-#
-#      - name: docker build push ticket-service
-#        uses: mr-smithers-excellent/docker-build-push@v5
-#        with:
-#          image: gryteck/rsoi-ticket-service
-#          tags: 1.0
-#          registry: docker.io
-#          directory: docker-compose/ticket-service
-#          dockerfile: docker-compose/ticket-service/Dockerfile
-#          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-#          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-#
-#      - name: docker build push user-service
-#        uses: mr-smithers-excellent/docker-build-push@v5
-#        with:
-#          image: gryteck/rsoi-user-service
-#          tags: 1.0
-#          registry: docker.io
-#          directory: docker-compose/user-service
-#          dockerfile: docker-compose/user-service/Dockerfile
-#          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-#          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-#
-#      - name: Deploy keycloak
-#        uses: actions-hub/kubectl@master
-#        with:
-#          args: apply -f k8s/secrets/keycloak-secret.yml -f k8s/keycloak-configmap.yml -f k8s/keycloak.yml
-#        env:
-#          KUBE_CONFIG: '${{ secrets.KUBE_CONFIG_ENC }}'
-#
-#      - name: Deploy ingress and postgres
-#        uses: actions-hub/kubectl@master
-#        with:
-#          args: apply -f k8s/secrets/docker-hub.yml -f k8s/main-db-configmap.yml -f k8s/secrets/postgresql-1-secret.yml -f k8s/postgres.yml -f k8s/ingress.yml
-#        env:
-#          KUBE_CONFIG: '${{ secrets.KUBE_CONFIG_ENC }}'
-#
-#      - name: Deploy helm
-#        uses: WyriHaximus/github-action-helm3@v2
-#        with:
-#          kubeconfig: '${{ secrets.KUBE_CONFIG }}'
-#          exec: |
-#            cd k8s
-#            ./deployService.sh "upgrade --install --wait" config-service
-#            ./deployService.sh "upgrade --install --wait" gateway-service
-#            ./deployService.sh "upgrade --install --wait" bonus-service
-#            ./deployService.sh "upgrade --install --wait" flight-service
-#            ./deployService.sh "upgrade --install --wait" ticket-service
-#            ./deployService.sh "upgrade --install --wait" user-service
-#            cd ..
-#
-#      - name: Waiting 90s all services to start
-#        run: sleep 90s
-#        shell: bash
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt-hotspot'
+          cache: gradle
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build and copy files for docker build
+        run: ./gradlew copyJarToDocker
+
+      - name: docker build push bonus-service
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: gryteck/rsoi-bonus-service
+          tags: 1.0
+          registry: docker.io
+          directory: docker-compose/bonus-service
+          dockerfile: docker-compose/bonus-service/Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: docker build push config-server
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: gryteck/rsoi-config-server
+          tags: 1.0
+          registry: docker.io
+          directory: docker-compose/config-server
+          dockerfile: docker-compose/config-server/Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: docker build push flight-service
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: gryteck/rsoi-flight-service
+          tags: 1.0
+          registry: docker.io
+          directory: docker-compose/flight-service
+          dockerfile: docker-compose/flight-service/Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: docker build push gateway
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: gryteck/rsoi-gateway
+          tags: 1.0
+          registry: docker.io
+          directory: docker-compose/gateway
+          dockerfile: docker-compose/gateway/Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: docker build push ticket-service
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: gryteck/rsoi-ticket-service
+          tags: 1.0
+          registry: docker.io
+          directory: docker-compose/ticket-service
+          dockerfile: docker-compose/ticket-service/Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: docker build push user-service
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: gryteck/rsoi-user-service
+          tags: 1.0
+          registry: docker.io
+          directory: docker-compose/user-service
+          dockerfile: docker-compose/user-service/Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Deploy keycloak
+        uses: actions-hub/kubectl@master
+        with:
+          args: apply -f k8s/secrets/keycloak-secret.yml -f k8s/keycloak-configmap.yml -f k8s/keycloak.yml
+        env:
+          KUBE_CONFIG: '${{ secrets.KUBE_CONFIG_ENC }}'
+
+      - name: Deploy ingress and postgres
+        uses: actions-hub/kubectl@master
+        with:
+          args: apply -f k8s/secrets/docker-hub.yml -f k8s/main-db-configmap.yml -f k8s/secrets/postgresql-1-secret.yml -f k8s/postgres.yml -f k8s/ingress.yml
+        env:
+          KUBE_CONFIG: '${{ secrets.KUBE_CONFIG_ENC }}'
+
+      - name: Deploy helm
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          kubeconfig: '${{ secrets.KUBE_CONFIG }}'
+          exec: |
+            cd k8s
+            ./deployService.sh "upgrade --install --wait" config-service
+            ./deployService.sh "upgrade --install --wait" gateway-service
+            ./deployService.sh "upgrade --install --wait" bonus-service
+            ./deployService.sh "upgrade --install --wait" flight-service
+            ./deployService.sh "upgrade --install --wait" ticket-service
+            ./deployService.sh "upgrade --install --wait" user-service
+            cd ..
+
+      - name: Waiting 90s all services to start
+        run: sleep 90s
+        shell: bash
 
       - name: Run API Tests
         uses: matt-ball/newman-action@master
