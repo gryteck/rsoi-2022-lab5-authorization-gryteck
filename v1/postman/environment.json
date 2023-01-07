@@ -4,12 +4,12 @@
 	"values": [
 		{
 			"key": "serviceUrl",
-			"value": "http://gryteck.cloud.okteto.net",
+			"value": "https://gryteck.cloud.okteto.net",
 			"enabled": true
 		},
 		{
 			"key": "identityProviderUrl",
-			"value": "http://gryteck.cloud.okteto.net/realms/rsoi-lab5/protocol/openid-connect/token",
+			"value": "https://gryteck.cloud.okteto.net/realms/rsoi-lab5/protocol/openid-connect/token",
 			"enabled": true
 		},
 		{
