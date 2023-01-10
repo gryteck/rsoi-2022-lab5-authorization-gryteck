@@ -1,4 +1,4 @@
-kubectl apply -f secrets/keycloak-secret.yml -f keycloak-configmap.yml -f keycloak.yml
+#kubectl apply -f secrets/keycloak-secret.yml -f keycloak-configmap.yml -f keycloak.yml
 kubectl apply -f secrets/docker-hub.yml -f secrets/postgresql-1-secret.yml -f postgres.yml
 kubectl apply -f ingress.yml
 kubectl apply -f main-db-configmap.yml
